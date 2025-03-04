@@ -1,72 +1,29 @@
+import Image from "next/image";
 import { FC } from "react";
 
 export const Hero: FC = () => {
   return (
     <div className="w-full h-screen bg-gradient-to-br from-black to-emerald-700 rounded-md relative">
-      {/* header */}
-      <header className="flex lg:flex-row flex-col items-center gap-12 lg:gap-0 justify-between px-8 mt-10">
-        <div className="w-full lg:w-[45%]">
-          <p>Hi there!</p>
-          <h1 className="text-[40px] sm:text-[60px] font-semibold leading-[45px] sm:leading-[70px]">
-            <span className="text-[#DC0155]">Luxe</span> is here to be your
-            assistance
+      <div className="h-full max-w-7xl mx-auto w-full items-center justify-center flex flex-col lg:flex-row">
+        <div className="lg:w-1/2 lg:h-1/2 w-full h-1/2  lg:p-12 lg:items-start items-center  justify-center flex flex-col lg:gap-6 gap-4 lg:mt-0 -mt-12">
+          <h1 className="lg:text-6xl text-5xl font-bold font-secondary text-white tracking-tight">
+            Ovensandwich.
           </h1>
-          <p className="mt-2 text-[1rem]">
-            I am here ready to help you in making creative digital products
+          <p className="text-start max-w-xs lg:max-w-md text-neutral-300 font-primary tracking-tight lg:text-base text-sm">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
-
-        <div className="w-full lg:w-[55%]">
-          <img
-            src="https://i.ibb.co/syHFhNy/image.png"
-            alt="image"
-            className=""
+        <div className="lg:w-1/2 lg:h-1/2 bg-black/20 rounded-2xl relative">
+          <Image
+            src="/assets/icons/hamburger-icon.png"
+            alt="Ovensandwich Hamburger Icon"
+            height={64}
+            width={64}
+            className="animate-float"
           />
         </div>
-      </header>
-
-      <section className="px-8 pb-[30px] mt-8">
-        <h1 className="text-[1.3rem] font-semibold">Our Service</h1>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-10 w-[70%]">
-          <div>
-            <img
-              src="https://i.ibb.co/z721j8b/Vector.png"
-              alt="Vector"
-              className="w-[30px]"
-            />
-            <h4 className="text-[1.1rem] mt-3">Branding</h4>
-            <p className="text-[0.9rem] text-gray-500 mt-1">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-          </div>
-          <div>
-            <img
-              src="https://i.ibb.co/Qn78BRJ/Ui-Design.png"
-              alt="Vector"
-              className="w-[30px]"
-            />
-            <h4 className="text-[1.1rem] mt-3">UI/UX</h4>
-            <p className="text-[0.9rem] text-gray-500 mt-1">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-          </div>
-          <div>
-            <img
-              src="https://i.ibb.co/GcsvXxk/Product.png"
-              alt="Vector"
-              className="w-[30px]"
-            />
-            <h4 className="text-[1.1rem] mt-3">Product Design</h4>
-            <p className="text-[0.9rem] text-gray-500 mt-1">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* right blur shadow */}
-      <div className="w-[100px] h-[100px] bg-[#DC0155] blur-[90px] absolute bottom-[80px] right-[80px]"></div>
+      </div>
     </div>
   );
 };

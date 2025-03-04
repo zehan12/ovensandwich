@@ -4,37 +4,25 @@ import Link from "next/link";
 import { FC, Fragment } from "react";
 
 const Header: FC = () => {
+  const midIndex = Math.floor(routes.length / 2);
+
   return (
     <header
       className="
-        lg:h-12
-        h-10 
-        lg:w-1/2 
-        w-full 
-        fixed 
-        z-50 
-        py-3 
-        bg-white/20 
-        text-primary  
-        text-stone-300 
-        backdrop-blur-md 
-        rounded-3xl 
-        self-center 
-        lg:translate-y-1/2
-        lg:translate-x-1/2 
-        lg:top-auto
-        top-4
-        my-auto
-        shadow-gray-200 
-        items-center 
-        justify-center 
-        flex  
-        tracking-tighter"
+        fixed z-50 flex items-center justify-center
+        bg-white/20 backdrop-blur-md rounded-3xl shadow-gray-200
+        tracking-tighter
+        lg:h-12 h-10
+        lg:w-1/2 w-4/5
+        top-6 left-1/2 lg:left-auto transform -translate-x-1/2
+        lg:top-auto lg:translate-y-1/2 lg:translate-x-1/2
+        py-3
+      "
     >
       <nav>
         <ul className="flex flex-row lg:gap-8 lg:text-base gap-3 text-sm items-center justify-between">
           {routes.map((route, idx) => {
-            if (idx + 1 === Math.floor(routes.length / 2)) {
+            if (idx + 1 === midIndex) {
               return (
                 <Fragment key={route.name}>
                   <li className="hover:text-stone-800">
