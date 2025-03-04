@@ -3,6 +3,9 @@
 @theme {
   --font-primary: var(--font-primary);
   --font-secondary: var(--font-secondary);
+  --brand: #047857;
+  --accent1: #f59e0b;
+  --accent2: #dc2626;
 }
 
 :root {
