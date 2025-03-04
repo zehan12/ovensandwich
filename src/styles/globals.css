@@ -3,14 +3,14 @@
 @theme {
   --font-primary: var(--font-primary);
   --font-secondary: var(--font-secondary);
-  --brand: #047857;
-  --accent1: #f59e0b;
-  --accent2: #dc2626;
 }
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --brand: #047857;
+  --accent1: #f59e0b;
+  --accent2: #dc2626;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -28,7 +28,7 @@ const footerLink = [
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <footer className="relative border-t border-border pt-6 pb-8 px-4 sm:px-6 lg:px-8 w-full max-w-6xl mx-auto">
+    <footer className="relative pt-6 pb-8 px-4 sm:px-6 lg:px-8 w-full max-w-6xl mx-auto">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-1.5 bg-foreground rounded-full"></div>
 
       <div className="flex flex-col items-center space-y-8 md:flex-row md:justify-between md:space-y-0">
@@ -84,7 +84,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="mt-8 border-t border-border/40 pt-4 px-4 sm:px-6 lg:px-8">
+      <div className="mt-8 pt-4 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-center">
           <p className="text-xs leading-5 text-muted-foreground text-center">
             &copy; {currentYear} All rights reserved.
