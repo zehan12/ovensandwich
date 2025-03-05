@@ -19,7 +19,6 @@ export interface FloatItems {
 }
 
 export interface UIButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  onClick?: () => void;
   variant: ButtonVariants;
   children: React.ReactNode;
   className?: string;
@@ -31,3 +30,15 @@ export type ButtonVariants =
   | "brand"
   | "accent1"
   | "accent2";
+
+export interface CarouselProps {
+  items: React.ReactNode[];
+  initialScroll?: number;
+}
+
+export type CardProps = {
+  src: string;
+  title: string;
+  category: string;
+  content: React.ReactNode;
+};

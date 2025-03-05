@@ -17,6 +17,7 @@ const FloatIcons: FC<FloatItems> = ({ data = [], wrapperStyle, isMobile }) => {
 
         return (
           <Image
+            priority
             key={idx}
             src={item.src}
             alt={item.alt}

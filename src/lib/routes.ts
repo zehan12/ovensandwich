@@ -2,19 +2,20 @@ import { NavItem } from "@/interfaces";
 
 export default [
   {
-    name: "About Us",
+    name: "Hakkımızda",
     selector: "#about",
   },
   {
-    name: "Menu",
+    name: "İletişim",
+    selector: "#contact",
+  },
+
+  {
+    name: "Menümüz",
     selector: "#menu",
   },
   {
-    name: "Contact",
-    selector: "#contact",
-  },
-  {
-    name: "Location",
+    name: "Lokasyon",
     selector: "#location",
   },
 ] as NavItem[];

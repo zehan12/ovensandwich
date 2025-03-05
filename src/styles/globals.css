@@ -3,11 +3,18 @@
 @theme {
   --font-primary: var(--font-primary);
   --font-secondary: var(--font-secondary);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-brand: var(--brand);
+  --color-accent1: var(--accent1);
+  --color-accent2: var(--accent2);
 }
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #0a0a0a;
+  --secondary: #ededed;
   --brand: #047857;
   --accent1: #f59e0b;
   --accent2: #dc2626;
@@ -54,4 +61,24 @@ body {
   100% {
     transform: translateY(0);
   }
+}
+
+.custom-shape-divider-bottom-1741134473 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-bottom-1741134473 svg {
+  position: relative;
+  display: block;
+  width: calc(226% + 1.3px);
+  height: 150px;
+}
+
+.custom-shape-divider-bottom-1741134473 .shape-fill {
+  fill: var(--primary);
 }

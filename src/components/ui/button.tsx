@@ -2,36 +2,37 @@ import { ButtonVariants, UIButtonProps } from "@/interfaces";
 import { FC } from "react";
 
 const variants = {
-  primary: "bg-[var(--white)] text-[var(--black)]",
-  secondary: "bg-[var(--black)] text-[var(--white)]",
-  accent1: "bg-[var(--accent1)] text-[var(--black)]",
-  accent2: "bg-[var(--accent2)] text-[var(--white)]",
-  brand: "bg-[var(--brand)] text-[var(--white)]",
+  accent1: "bg-accent1 text-white hover:bg-accent1/75",
+  accent2: "bg-accent2 text-white hover:bg-accent2/75",
+  primary: "bg-primary text-secondary hover:bg-primary/75",
+  secondary: "bg-secondary text-primary hover:bg-secondary/75",
+  brand: "bg-brand text-white hover:bg-brand/75",
 } as Record<ButtonVariants, string>;
 
 const Button: FC<UIButtonProps> = ({
   children,
-  onClick,
-  variant = "primary",
+  variant,
   className,
   ...props
 }) => {
   return (
     <button
-      {...props}
       className={`
         px-4 
+        transition-all
+        duration-300
         py-2 
         rounded-md 
-        bg-white 
-        text-black 
-        font-primary 
         tracking-tight 
         text-sm 
+        items-center 
+        flex 
+        gap-2
         cursor-pointer
         ${variants[variant]}
         ${className}
         `}
+      {...props}
     >
       {children}
     </button>

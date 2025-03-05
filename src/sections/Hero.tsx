@@ -1,8 +1,9 @@
+import Divider from "@/components/divider";
 import { FloatIcons } from "@/components/float-icons";
 import Button from "@/components/ui/button";
 import { useMobile } from "@/hooks/use-mobile";
 import floatIconsLib from "@/lib/floatIconsLib";
-import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { FC } from "react";
 
 export const Hero: FC = () => {
@@ -19,7 +20,15 @@ export const Hero: FC = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-          <Button variant="secondary">Lorem ipsum</Button>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              alert("aa");
+            }}
+          >
+            <span>Lorem ipsum</span>
+            <ArrowRight />
+          </Button>
           {isMobile && (
             <FloatIcons
               isMobile={isMobile}
@@ -34,6 +43,7 @@ export const Hero: FC = () => {
           wrapperStyle="overflow-hidden z-0 lg:w-1/2 lg:h-1/2 lg:block hidden relative"
         />
       </div>
+      <Divider />
     </div>
   );
 };
