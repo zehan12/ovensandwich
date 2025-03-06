@@ -1,4 +1,4 @@
-import { About } from "@/sections/About";
+import About from "@/sections/About";
 import { Hero } from "@/sections/Hero";
 import { Menu } from "@/sections/Menu";
 

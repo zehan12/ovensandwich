@@ -42,3 +42,8 @@ export type CardProps = {
   category: string;
   content: React.ReactNode;
 };
+
+export interface SquareDataProps {
+  id: number;
+  src: string;
+}
