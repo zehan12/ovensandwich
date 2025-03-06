@@ -56,7 +56,7 @@ const Header: FC = () => {
         duration-300
         ${
           active
-            ? "bg-secondary/20"
+            ? "bg-black/20  text-white"
             : "bg-gradient-to-br from-white/10 to-white/0"
         }
       `}

@@ -1,6 +1,10 @@
-import About from "@/sections/About";
 import { Hero } from "@/sections/Hero";
 import { Menu } from "@/sections/Menu";
+import dynamic from "next/dynamic";
+
+const About = dynamic(() => import("@/sections/About"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (

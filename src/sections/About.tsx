@@ -1,7 +1,9 @@
+import { useEffect, useRef, useState } from "react";
+import { motion as m, AnimatePresence } from "motion/react";
+import { useOutsideClick } from "@/hooks/use-outside-click";
+import { SquareDataProps } from "@/interfaces";
 import galleryLib from "@/lib/galleryLib";
 import shuffle from "@/utils/shuffle";
-import { motion as m } from "motion/react";
-import { useEffect, useRef, useState } from "react";
 
 const About = () => (
   <section className="w-full px-8 py-12 grid grid-cols-1  md:grid-cols-2 items-center gap-8 max-w-7xl mx-auto">
@@ -9,52 +11,81 @@ const About = () => (
       <span className="block mb-4 text-xs md:text-sm text-accent1 font-primary">
         Her gün 10.00'dan 22.00'da
       </span>
-      <h3 className="text-4xl md:text-6xl font-semibold font-secondary bg-gradient-to-r text-clip from-secondary to-primary  tracking-tight">
+      <h3 className="text-5xl md:text-6xl font-semibold font-secondary bg-gradient-to-r text-transparent bg-clip-text from-secondary  to-brand tracking-tight">
         Sizler için buradayız.
       </h3>
-      <p className="text-base md:text-lg text-stone-400 font-primary my-4 md:my-6">
-        Lorem ipsum olor sit amet consectetur, adipisicing elit. Nam nobis in
-        error repellat voluptatibus ad.
+      <p className="text-sm md:text-base text-stone-400 font-primary my-4 md:my-6 tracking-tighter">
+        Yenilikçi tatların buluştuğu noktamıza sizleri bekliyor, 100% memnuniyet
+        garantiliyoruz. burada her lokma geleceğin lezzetlerini yaşatıyor.
+        Taptaze sandviçler, sıcacık tostlar, unutulmaz tatlılar ve ferahlatıcı
+        içeceklerle donatılmış menümüz, damaklarınızı şımartacak eşsiz bir
+        deneyim sunuyor.
       </p>
     </div>
     <ShuffleGrid />
   </section>
 );
 
-const generateSquares = () => {
-  return shuffle(galleryLib).map((val) => (
-    <m.div
-      key={val.id}
-      layout
-      transition={{
-        duration: 1.5,
-        type: "spring",
-      }}
-      className="w-full h-full bg-cover"
-      style={{
-        backgroundImage: `url(${val.src})`,
-      }}
-    />
-  ));
-};
+const genSq = (): SquareDataProps[] => shuffle([...galleryLib]);
 
 const ShuffleGrid = () => {
-  const timeoutRef = useRef<any>(null);
-  const [squares, setSquares] = useState(generateSquares());
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  const [squares, setSquares] = useState(genSq());
+  const [selected, setSelected] = useState<SquareDataProps | null>(null);
+
+  const handleClick = () => setSelected(null);
+
+  useOutsideClick(containerRef, handleClick);
 
   useEffect(() => {
-    shuffleSquares();
-    return () => clearTimeout(timeoutRef.current);
-  }, []);
+    if (!selected) {
+      intervalRef.current = setInterval(() => {
+        setSquares(genSq());
+      }, 2500);
+    } else if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [selected]);
 
-  const shuffleSquares = () => {
-    setSquares(generateSquares());
-    timeoutRef.current = setTimeout(shuffleSquares, 3000);
-  };
   return (
-    <div className="grid grid-cols-4 grid-rows-4 h-[450px] gap-1">
-      {squares.map((val) => val)}
-    </div>
+    <>
+      <div className="grid lg:grid-cols-4 grid-cols-3 grid-rows-4 h-[450px] gap-1">
+        {squares.map((item) => (
+          <m.div
+            key={item.id}
+            layout
+            transition={{ duration: 1.5, type: "spring", bounce: 0.2 }}
+            onClick={() => setSelected(item)}
+            layoutId={`square-${item.id}`}
+            className="w-full h-full bg-cover cursor-pointer hover:scale-110"
+            style={{ backgroundImage: `url(${item.src})` }}
+          />
+        ))}
+      </div>
+      {selected && (
+        <AnimatePresence>
+          <m.div
+            className="fixed inset-0 bg-black/50 backdrop-blur-lg flex items-center justify-center z-50"
+            onClick={() => setSelected(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <m.div
+              layoutId={`square-${selected.id}`}
+              className="lg:w-1/2 w-full h-72 lg:h-96 bg-contain rounded-xl bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${selected.src})` }}
+              onClick={(e) => e.stopPropagation()}
+            />
+          </m.div>
+        </AnimatePresence>
+      )}
+    </>
   );
 };
 
