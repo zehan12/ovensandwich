@@ -15,30 +15,6 @@ const Footer: FC = () => {
         </h1>
         <ul className="flex flex-row lg:gap-2  items-center justify-center lg:text-base text-sm max-w-full w-full">
           {routes.map((route, idx) => {
-            if (idx + 1 === ROUTE_MEDIAN) {
-              return (
-                <Fragment key={route.name}>
-                  <li className="hover:text-stone-300 font-primary tracking-tighter hover:underline underline-offset-3 transition-all duration-500 hover:decoration-[#047857] px-4">
-                    <Link href={route.selector}>{route.name}</Link>
-                  </li>
-                  <li className="md:block absolute lg:static lg:translate-x-0 right-1/2 translate-x-1/2">
-                    <Link
-                      href={INSTAGRAM_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mx"
-                    >
-                      <Image
-                        src="/assets/icons/instagram-icon.webp"
-                        height={40}
-                        width={40}
-                        alt="Ovensandwich Instagram Icon"
-                      />
-                    </Link>
-                  </li>
-                </Fragment>
-              );
-            }
             return (
               <li
                 key={idx}
@@ -57,6 +33,15 @@ const Footer: FC = () => {
               </li>
             );
           })}
+          <li className="hover:text-stone-300 border-l font-primary tracking-tighter hover:underline underline-offset-3 transition-all duration-500 hover:decoration-[#047857] px-4">
+            <Link
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Instagram
+            </Link>
+          </li>
         </ul>
       </div>
       <Separator />
@@ -70,8 +55,8 @@ const Footer: FC = () => {
               className="hover:text-white hover:underline underline-offset-3 transition-all duration-500 hover:decoration-[#047857]"
             >
               Powered By Motion Provider
-            </Link>
-            -
+            </Link>{" "}
+            -{" "}
             <Link
               href="https://burakdev.com/"
               target="_blank"

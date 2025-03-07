@@ -28,7 +28,7 @@ const Header: FC = () => {
     <header
       className={`
         fixed 
-        z-[999] 
+        z-[998] 
         flex 
         items-center 
         justify-center

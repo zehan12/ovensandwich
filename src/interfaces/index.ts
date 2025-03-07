@@ -36,13 +36,25 @@ export interface CarouselProps {
   initialScroll?: number;
 }
 
-export type CardProps = {
+export interface MenuCardProps {
   src: string;
   title: string;
   category: string;
-  content: React.ReactNode;
-};
+}
 
+export interface MenuItemProps {
+  title: string;
+  desc?: string;
+  price: number;
+  group: ItemGroupProps;
+}
+
+export type ItemGroupProps =
+  | "sandwich"
+  | "desert"
+  | "beverage"
+  | "cookie"
+  | "toast";
 export interface SquareDataProps {
   id: number;
   src: string;

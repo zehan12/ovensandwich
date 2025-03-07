@@ -9,7 +9,7 @@ import { AnimatePresence, motion, useInView } from "motion/react";
 import Image, { ImageProps } from "next/image";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import { ArrowLeft, ArrowRight, X } from "lucide-react";
-import { CardProps, CarouselProps } from "@/interfaces";
+import { MenuCardProps, CarouselProps } from "@/interfaces";
 
 export const CarouselContext = createContext<{
   onCardClose: (index: number) => void;
@@ -134,7 +134,7 @@ export const Card = ({
   index,
   layout = false,
 }: {
-  card: CardProps;
+  card: MenuCardProps;
   index: number;
   layout?: boolean;
 }) => {
@@ -207,7 +207,7 @@ export const Card = ({
               >
                 {card.title}
               </motion.p>
-              <div className="py-10">{card.content}</div>
+              <div className="py-10">CONTENT CARD WILL BE HERE</div>
             </motion.div>
           </div>
         )}
