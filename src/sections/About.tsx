@@ -80,7 +80,6 @@ const ShuffleGrid = () => {
               layoutId={`square-${selected.id}`}
               className="lg:w-1/2 w-full h-72 lg:h-96 bg-contain rounded-xl bg-center bg-no-repeat"
               style={{ backgroundImage: `url(${selected.src})` }}
-              onClick={(e) => e.stopPropagation()}
             />
           </m.div>
         </AnimatePresence>

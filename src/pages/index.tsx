@@ -1,5 +1,6 @@
 import { Hero } from "@/sections/Hero";
 import { Menu } from "@/sections/Menu";
+import Testimonials from "@/sections/Testimonials";
 import dynamic from "next/dynamic";
 
 const About = dynamic(() => import("@/sections/About"), {
@@ -12,6 +13,7 @@ export default function Home() {
       <Hero />
       <Menu />
       <About />
+      <Testimonials />
     </div>
   );
 }
