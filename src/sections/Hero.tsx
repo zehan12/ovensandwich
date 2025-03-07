@@ -17,8 +17,9 @@ export const Hero: FC = () => {
             Ovensandwich.
           </h1>
           <p className="lg:text-start text-center max-w-xs lg:max-w-md text-neutral-300 font-primary tracking-tight lg:text-base text-sm">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Çamdibinin en iyi büfesi Ovensandwich restorant, lezzetli tostlar,
+            tatlılar, sandviçler ve içeceklerle donatılmış menümüz ile
+            hizmetinizdeyiz!
           </p>
           <Button
             variant="secondary"
@@ -26,8 +27,8 @@ export const Hero: FC = () => {
               alert("aa");
             }}
           >
-            <span>Lorem ipsum</span>
-            <ArrowRight />
+            <span>Haritalarda Görüntüleyin</span>
+            <ArrowRight className="w-5 h-5" />
           </Button>
           {isMobile && (
             <FloatIcons

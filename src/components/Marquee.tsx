@@ -12,7 +12,7 @@ export default function Marquee({
   return (
     <div
       {...props}
-      className={`group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem] [gap:var(--gap)]
+      className={`group flex overflow-hidden p-2 [--duration:40s] lg:[--gap:8rem] [--gap:4rem] [gap:var(--gap)]
         ${!vertical ? "flex-row" : "flex-col"}`}
     >
       {Array(repeat)

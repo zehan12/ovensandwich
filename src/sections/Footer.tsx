@@ -1,93 +1,40 @@
-import Link from "next/link";
-import { Logo } from "@/components/logo";
 import routes from "@/lib/routes";
-
-const footerLink = [
-  {
-    name: "About",
-    link: "#",
-  },
-  {
-    name: "Contact",
-    link: "3",
-  },
-  {
-    name: "FAQ",
-    link: "#",
-  },
-  {
-    name: "Privacy Policy",
-    link: "#",
-  },
-  {
-    name: "Terms and Conditions",
-    link: "#",
-  },
-];
+import Link from "next/link";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="relative pt-6 pb-8 px-4 sm:px-6 lg:px-8 w-full max-w-6xl mx-auto">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-1.5 bg-foreground rounded-full"></div>
-
-      <div className="flex flex-col items-center space-y-8 md:flex-row md:justify-between md:space-y-0">
-        <div className="mt-8 md:mt-0">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-              <Logo />
-            </div>
-            <div className="grid flex-1 text-left text-sm leading-tight">
-              <p
-                className="text-xl font-semibold  text-primary tracking-tighter"
-                style={{ fontVariationSettings: '"opsz" 32' }}
-              >
-                Ovensandwich
-              </p>
-            </div>
-          </Link>
-        </div>
-
-        <div className="w-full md:w-auto">
-          <nav className="flex flex-wrap justify-center gap-4 text-center md:justify-end">
-            {routes.map((item) => (
+    <footer className="relative py-14 px-4 sm:px-6 lg:px-8 w-full  mx-auto bg-gradient-to-b from-[#0a0a0a] to-emerald-700">
+      <div className="flex flex-col items-center justify-center max-w-7xl mx-auto w-full gap-8">
+        <h1 className="lg:text-7xl text-5xl font-bold tracking-tighter font-secondary self-center justify-self-center text-center">
+          OVENSANDWICH
+        </h1>
+        <ul className="items-center justify-center flex flex-row  gap-2 lg:text-base text-sm">
+          {routes.map((route, index) => (
+            <li
+              key={index}
+              className={`${
+                routes.length - 1 !== index && "border-r border-stone-400 "
+              } w-24 items-center text-center   justify-center flex`}
+            >
               <Link
-                key={item.name}
-                href={item.selector}
-                className="text-xs leading-5 text-muted-foreground hover:text-foreground transition-colors"
+                href={route.selector}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-stone-300 font-primary tracking-tighter hover:underline underline-offset-3 transition-all duration-500  hover:decoration-[#047857]"
               >
-                {item.name}
+                {route.name}
               </Link>
-            ))}
-          </nav>
-        </div>
-
-        <div className="flex justify-center space-x-4">
-          <button>
-            <Link
-              href="https://youtube.com/@zenityteam?si=3FIrYQTbgh0m3UKA"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="sr-only">Youtube</span>
-            </Link>
-          </button>
-          <button>
-            <Link
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="sr-only">Instagram</span>
-            </Link>
-          </button>
-        </div>
+            </li>
+          ))}
+        </ul>
       </div>
-
       <div className="mt-8 pt-4 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-center">
-          <p className="text-xs leading-5 text-muted-foreground text-center">
-            &copy; {currentYear} All rights reserved.
+          <p className="text-xs leading-5 text-muted-foreground text-center font-secondary">
+            &copy; {currentYear} Tüm hakları saklıdır. | Powered By Motion
+            Provider - Burak Bilen.
           </p>
         </div>
       </div>

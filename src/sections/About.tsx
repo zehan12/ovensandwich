@@ -1,36 +1,50 @@
 import { useEffect, useRef, useState } from "react";
-import { motion as m, AnimatePresence } from "motion/react";
+import { motion as m, AnimatePresence, useInView } from "motion/react";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import { SquareDataProps } from "@/interfaces";
 import galleryLib from "@/lib/galleryLib";
 import shuffle from "@/utils/shuffle";
 
-const About = () => (
-  <section className="w-full px-8 py-12 grid grid-cols-1  md:grid-cols-2 items-center gap-8 max-w-7xl mx-auto">
-    <div>
-      <span className="block mb-4 text-xs md:text-sm text-accent1 font-primary">
-        Her gün 10.00'dan 22.00'da
-      </span>
-      <h3 className="text-5xl md:text-6xl font-semibold font-secondary bg-gradient-to-r text-transparent bg-clip-text from-secondary  to-brand tracking-tight">
-        Sizler için buradayız.
-      </h3>
-      <p className="text-sm md:text-base text-stone-400 font-primary my-4 md:my-6 tracking-tighter">
-        Yenilikçi tatların buluştuğu noktamıza sizleri bekliyor, 100% memnuniyet
-        garantiliyoruz. burada her lokma geleceğin lezzetlerini yaşatıyor.
-        Taptaze sandviçler, sıcacık tostlar, unutulmaz tatlılar ve ferahlatıcı
-        içeceklerle donatılmış menümüz, damaklarınızı şımartacak eşsiz bir
-        deneyim sunuyor.
-      </p>
-    </div>
-    <ShuffleGrid />
-  </section>
-);
+const About = () => {
+  const ref = useRef<HTMLHeadingElement | null>(null);
+
+  return (
+    <section className="w-full px-8 py-12 grid grid-cols-1  md:grid-cols-2 items-center gap-8 max-w-7xl mx-auto">
+      <div>
+        <span className="block mb-4 text-xs md:text-sm text-accent1 font-primary">
+          Her gün 10.00'dan 22.00'da
+        </span>
+        <h3
+          className="text-5xl md:text-6xl font-semibold font-secondary bg-gradient-to-r text-transparent bg-clip-text from-secondary  to-brand tracking-tight"
+          ref={ref}
+        >
+          Sizler için buradayız.
+        </h3>
+        <p className="text-sm md:text-base text-stone-400 font-primary my-4 md:my-6 tracking-tighter">
+          Yenilikçi tatların buluştuğu noktamıza sizleri bekliyor, 100%
+          memnuniyet garantiliyoruz. burada her lokma geleceğin lezzetlerini
+          yaşatıyor. Taptaze sandviçler, sıcacık tostlar, unutulmaz tatlılar ve
+          ferahlatıcı içeceklerle donatılmış menümüz, damaklarınızı şımartacak
+          eşsiz bir deneyim sunuyor.
+        </p>
+      </div>
+      <ShuffleGrid ref={ref} />
+    </section>
+  );
+};
 
 const genSq = (): SquareDataProps[] => shuffle([...galleryLib]);
 
-const ShuffleGrid = () => {
+const ShuffleGrid = ({
+  ref,
+}: {
+  ref: React.RefObject<HTMLDivElement | null>;
+}) => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const inView = useInView(ref, {
+    amount: 0.2,
+  });
 
   const [squares, setSquares] = useState(genSq());
   const [selected, setSelected] = useState<SquareDataProps | null>(null);
@@ -40,7 +54,7 @@ const ShuffleGrid = () => {
   useOutsideClick(containerRef, handleClick);
 
   useEffect(() => {
-    if (!selected) {
+    if (!selected && inView) {
       intervalRef.current = setInterval(() => {
         setSquares(genSq());
       }, 2500);
@@ -50,7 +64,7 @@ const ShuffleGrid = () => {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [selected]);
+  }, [selected, inView]);
 
   return (
     <>

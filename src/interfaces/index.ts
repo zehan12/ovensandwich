@@ -57,3 +57,21 @@ export interface MarqueeProps {
   repeat?: number;
   [key: string]: any;
 }
+
+export interface TestimonialProps {
+  title: string;
+  name: string;
+  job: string;
+}
+
+export type SeparatorProps = {
+  /**
+   * @default ""
+   */
+  label?: React.ReactNode;
+  /**
+   * @default false
+   */
+  gradient?: boolean;
+  className?: string;
+};
