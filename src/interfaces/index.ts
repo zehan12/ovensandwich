@@ -64,14 +64,9 @@ export interface TestimonialProps {
   job: string;
 }
 
-export type SeparatorProps = {
-  /**
-   * @default ""
-   */
-  label?: React.ReactNode;
-  /**
-   * @default false
-   */
-  gradient?: boolean;
+export interface LogoProps {
   className?: string;
-};
+  isAnimated?: boolean;
+  height?: number;
+  width?: number;
+}

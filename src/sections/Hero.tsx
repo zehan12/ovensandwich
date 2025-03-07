@@ -3,11 +3,17 @@ import { FloatIcons } from "@/components/float-icons";
 import Button from "@/components/ui/button";
 import { useMobile } from "@/hooks/use-mobile";
 import floatIconsLib from "@/lib/floatIconsLib";
-import { ArrowRight } from "lucide-react";
+import { MapPinCheckInside } from "lucide-react";
+import Link from "next/link";
 import { FC } from "react";
 
 export const Hero: FC = () => {
   const isMobile = useMobile();
+  const ADDRESS =
+    "Tuna mah. 5522 sokak No 32 Bornova İzmir, İzmir, Turkey 35090";
+  const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+    ADDRESS
+  )}`;
 
   return (
     <div className="w-full h-screen bg-gradient-to-br from-black to-emerald-700 rounded-md relative">
@@ -21,15 +27,17 @@ export const Hero: FC = () => {
             tatlılar, sandviçler ve içeceklerle donatılmış menümüz ile
             hizmetinizdeyiz!
           </p>
-          <Button
-            variant="secondary"
-            onClick={() => {
-              alert("aa");
-            }}
+          <Link
+            href={DIRECTIONS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="z-50"
           >
-            <span>Haritalarda Görüntüleyin</span>
-            <ArrowRight className="w-5 h-5" />
-          </Button>
+            <Button variant="secondary" className="w-full h-full">
+              <span>Haritalarda Görüntüleyin</span>
+              <MapPinCheckInside className="w-5 h-5 " />
+            </Button>
+          </Link>
           {isMobile && (
             <FloatIcons
               isMobile={isMobile}

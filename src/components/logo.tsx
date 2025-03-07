@@ -1,14 +1,20 @@
+import { LogoProps } from "@/interfaces";
 import Image from "next/image";
 import { FC } from "react";
 
-export const Logo: FC<{ className?: string }> = ({ className }) => {
+export const Logo: FC<LogoProps> = ({
+  className,
+  isAnimated = false,
+  height = 50,
+  width = 50,
+}) => {
   return (
     <Image
-      src="/favicon.ico"
-      height={50}
-      width={50}
+      src="/ovensandwich-logo.png"
+      height={height}
+      width={width}
       alt="Ovensandwich logo"
-      className={`rounded-full animate-bounce ${className}`}
+      className={`rounded-full ${isAnimated && "animate-bounce"} ${className}`}
     />
   );
 };

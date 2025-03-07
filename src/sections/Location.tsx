@@ -1,10 +1,18 @@
 import Button from "@/components/ui/button";
-import { ADDRESS, DIRECTIONS_URL, GOOGLE_MAPS_URL } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import { FC } from "react";
 
-const Location = () => {
+const Location: FC = () => {
+  const ADDRESS =
+    "Tuna mah. 5522 sokak No 32 Bornova İzmir, İzmir, Turkey 35090";
+  const GOOGLE_MAPS_URL = `https://www.google.com/maps?q=${encodeURIComponent(
+    ADDRESS
+  )}&output=embed`;
+  const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+    ADDRESS
+  )}`;
+
   return (
     <section className="w-full px-8  items-center justify-center flex flex-col  max-w-7xl mx-auto pb-12">
       <h2 className="text-5xl md:text-6xl font-secondary font-bold mb-4">

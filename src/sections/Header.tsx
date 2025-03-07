@@ -1,10 +1,10 @@
 import { Logo } from "@/components/logo";
 import routes from "@/lib/routes";
+import { ROUTE_MEDIAN } from "@/lib/utils";
 import Link from "next/link";
 import { FC, Fragment, useEffect, useState } from "react";
 
 const Header: FC = () => {
-  const midIndex = Math.floor(routes.length / 2);
   const [active, setActive] = useState<boolean>(false);
 
   useEffect(() => {
@@ -29,8 +29,6 @@ const Header: FC = () => {
       className={`
         fixed 
         z-[999] 
-        border
-        border-stone-700
         flex 
         items-center 
         justify-center
@@ -54,17 +52,13 @@ const Header: FC = () => {
         py-3
         transition-all
         duration-300
-        ${
-          active
-            ? "bg-black/20  text-white"
-            : "bg-gradient-to-br from-white/10 to-white/0"
-        }
+        ${active ? "bg-black/80  text-white" : "bg-transparent text-white"}
       `}
     >
       <nav className="font-primary">
         <ul className="flex flex-row lg:gap-8 lg:text-base gap-3 text-sm items-center justify-between">
           {routes.map((route, idx) => {
-            if (idx + 1 === midIndex) {
+            if (idx + 1 === ROUTE_MEDIAN) {
               return (
                 <Fragment key={route.name}>
                   <li className="hover:text-stone-300 hover:underline underline-offset-3 transition-all duration-500 hover:decoration-[#047857]">
@@ -72,7 +66,7 @@ const Header: FC = () => {
                   </li>
                   <li>
                     <Link href="/">
-                      <Logo />
+                      <Logo isAnimated />
                     </Link>
                   </li>
                 </Fragment>
