@@ -18,6 +18,14 @@ export default [
     left: 60,
   },
   {
+    alt: "Ovensandwich Cookie Icon",
+    src: "/assets/icons/cookie-icon.png",
+    height: 72,
+    width: 72,
+    top: 80,
+    left: 24,
+  },
+  {
     alt: "Ovensandwich Bread Icon",
     src: "/assets/icons/bread-icon.png",
     height: 72,

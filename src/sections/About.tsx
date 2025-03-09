@@ -8,6 +8,7 @@ import Button from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { INSTAGRAM_URL } from "@/lib/utils";
+import MotionContainer from "@/components/motion-provider/motion-container";
 
 const About = () => {
   const ref = useRef<HTMLHeadingElement | null>(null);
@@ -18,15 +19,21 @@ const About = () => {
       id="about"
     >
       <div>
-        <span className="block mb-4 text-xs md:text-sm text-accent1 font-primary">
-          Her gün 10.00'dan 22.00'da
-        </span>
-        <h3
-          className="text-5xl md:text-6xl font-semibold font-secondary bg-gradient-to-r text-transparent bg-clip-text from-secondary  to-brand tracking-tight"
+        <span
+          className="block mb-4 text-xs md:text-sm text-accent1 font-primary"
           ref={ref}
         >
-          Sizler için buradayız.
-        </h3>
+          Her gün sabah 9.00'dan akşam 21.00'a
+        </span>
+        <MotionContainer
+          elementType={"h3"}
+          mode={["fadeIn", "filterBlurIn"]}
+          className="text-5xl md:text-6xl font-semibold font-secondary bg-gradient-to-r text-transparent bg-clip-text from-secondary  to-brand tracking-tight"
+          delay={0.5}
+          duration={1}
+          transition="smooth"
+          children="Sizler için buradayız."
+        />
         <p className="text-sm md:text-base text-stone-400 font-primary my-4 md:my-6 tracking-tighter">
           Yenilikçi tatların buluştuğu noktamıza sizleri bekliyor, 100%
           memnuniyet garantiliyoruz. burada her lokma geleceğin lezzetlerini

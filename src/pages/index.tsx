@@ -19,7 +19,24 @@ export default function Home() {
           content="Çamdibinin en iyi büfesi Ovensandwich restorant, lezzetli tostlar, tatlılar, sandviçler ve içeceklerle donatılmış menümüz ile hizmetinizdeyiz."
           key="description"
         />
-        <meta name="icon" content="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="keywords"
+          content="Ovensandwich, Restaurant, Food, Tost, Tatlı, Sandviç, Çamdibinin Büfesi"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta name="theme-color" content="#ffffff" />
+        <meta property="og:title" content="Ovensandwich" />
+        <meta
+          property="og:description"
+          content="Çamdibinin en iyi büfesi Ovensandwich restorant, lezzetli tostlar, tatlılar, sandviçler ve içeceklerle donatılmış menümüz ile hizmetinizdeyiz."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.ovensandwich.com" />
+        <meta
+          property="og:image"
+          content="https://www.ovensandwich.com/favicon.ico"
+        />
       </Head>
       <div className="items-center justify-center flex flex-col w-full min-h-screen h-auto">
         <Hero />
