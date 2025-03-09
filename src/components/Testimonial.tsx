@@ -2,9 +2,12 @@ import React, { FC } from "react";
 import { Quote, Star } from "lucide-react";
 import { TestimonialProps } from "@/interfaces";
 
-const Testimonial: FC<TestimonialProps & { textSize?: string }> = (props) => {
-  const { job, name, title, textSize = "text-2xl" } = props;
-
+export default function Testimonial({
+  job,
+  name,
+  title,
+  textSize = "text-2xl",
+}: TestimonialProps & { textSize?: string }) {
   return (
     <div
       className="w-full mt-8 md:mt-0 max-w-xs p-4 shadow-xl rounded-lg relative  overflow-hidden"
@@ -34,6 +37,4 @@ const Testimonial: FC<TestimonialProps & { textSize?: string }> = (props) => {
       </div>
     </div>
   );
-};
-
-export default Testimonial;
+}

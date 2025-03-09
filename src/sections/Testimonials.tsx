@@ -3,8 +3,8 @@ import dynamic from "next/dynamic";
 import testimonialLib from "@/lib/testimonialLib";
 import getTextSize from "@/utils/getTextSize";
 import Testimonial from "@/components/testimonial";
-import MotionQueue from "@/components/motion-provider/motion-queue";
 import { AnimationQueueAnimationProps } from "@/components/motion-provider/types";
+import MotionQueue from "@/components/motion-provider/motion-queue";
 
 const Marquee = dynamic(() => import("@/components/marquee"), {
   ssr: false,
