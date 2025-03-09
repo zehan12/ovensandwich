@@ -43,7 +43,7 @@ const QueueContainer: FC<
       delay:
         delayByElement ??
         calculateDelay({
-          delayLogic: "custom",
+          delayLogic: "linear",
           index: idx,
           baseDuration: duration,
           customLogic,
