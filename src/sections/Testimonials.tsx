@@ -2,9 +2,9 @@ import { FC } from "react";
 import dynamic from "next/dynamic";
 import testimonialLib from "@/lib/testimonialLib";
 import getTextSize from "@/utils/getTextSize";
-import Testimonial from "@/components/Testimonial";
+import Testimonial from "@/components/testimonial";
 
-const Marquee = dynamic(() => import("@/components/Marquee"), {
+const Marquee = dynamic(() => import("@/components/marquee"), {
   ssr: false,
 });
 

@@ -14,7 +14,10 @@ const Location: FC = () => {
   )}`;
 
   return (
-    <section className="w-full px-8  items-center justify-center flex flex-col  max-w-7xl mx-auto pb-12">
+    <section
+      className="w-full px-8 items-center justify-center flex flex-col  max-w-7xl mx-auto pb-12"
+      id="location"
+    >
       <h2 className="text-5xl md:text-6xl font-secondary font-bold mb-4">
         Lokasyonumuz.
       </h2>

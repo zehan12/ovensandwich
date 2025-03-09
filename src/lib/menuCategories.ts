@@ -2,22 +2,22 @@ import { MenuCardProps } from "@/interfaces";
 
 export default [
   {
-    category: "Sandviçlerimiz",
+    category: "sandwich",
     title: "Kim demiş lezzete doyum olmaz diye... ",
     src: "/assets/menu-images/menu-sandwiches.webp",
   },
   {
-    category: "Tostlarımız",
+    category: "toast",
     title: "Özenle, Sıcacık Tostlarımız",
     src: "/assets/menu-images/menu-toast.webp",
   },
   {
-    category: "Tatlılarımız",
+    category: "desert",
     title: "Tatlı yiyelim tatlı konuşalım",
     src: "/assets/menu-images/menu-deserts.webp",
   },
   {
-    category: "İçeceklerimiz",
+    category: "beverage",
     title: "Ferahlığı Keşfet, Yenilen!",
     src: "/assets/menu-images/menu-beverages.webp",
   },

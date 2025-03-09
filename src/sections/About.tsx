@@ -4,12 +4,19 @@ import { useOutsideClick } from "@/hooks/use-outside-click";
 import { SquareDataProps } from "@/interfaces";
 import galleryLib from "@/lib/galleryLib";
 import shuffle from "@/utils/shuffle";
+import Button from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { INSTAGRAM_URL } from "@/lib/utils";
 
 const About = () => {
   const ref = useRef<HTMLHeadingElement | null>(null);
 
   return (
-    <section className="w-full px-8 py-12 grid grid-cols-1  md:grid-cols-2 items-center gap-8 max-w-7xl mx-auto">
+    <section
+      className="w-full px-8 py-12 grid grid-cols-1  md:grid-cols-2 items-center gap-8 max-w-7xl mx-auto"
+      id="about"
+    >
       <div>
         <span className="block mb-4 text-xs md:text-sm text-accent1 font-primary">
           Her gün 10.00'dan 22.00'da
@@ -27,6 +34,12 @@ const About = () => {
           ferahlatıcı içeceklerle donatılmış menümüz, damaklarınızı şımartacak
           eşsiz bir deneyim sunuyor.
         </p>
+        <Link href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+          <Button variant="brand">
+            <span>Instagram Sayfamız</span>
+            <ArrowRight className="size-4" />
+          </Button>
+        </Link>
       </div>
       <ShuffleGrid ref={ref} />
     </section>

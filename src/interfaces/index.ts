@@ -39,7 +39,7 @@ export interface CarouselProps {
 export interface MenuCardProps {
   src: string;
   title: string;
-  category: string;
+  category: ItemGroupProps;
 }
 
 export interface MenuItemProps {
@@ -49,12 +49,8 @@ export interface MenuItemProps {
   group: ItemGroupProps;
 }
 
-export type ItemGroupProps =
-  | "sandwich"
-  | "desert"
-  | "beverage"
-  | "cookie"
-  | "toast";
+export type ItemGroupProps = "sandwich" | "desert" | "beverage" | "toast";
+
 export interface SquareDataProps {
   id: number;
   src: string;

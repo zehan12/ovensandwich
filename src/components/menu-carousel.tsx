@@ -10,6 +10,10 @@ import Image, { ImageProps } from "next/image";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { MenuCardProps, CarouselProps } from "@/interfaces";
+import menu from "@/lib/menu";
+import MenuItem from "./menu-item";
+import Button from "./ui/button";
+import { CATEGORY_TRANSLATION } from "@/lib/utils";
 
 export const CarouselContext = createContext<{
   onCardClose: (index: number) => void;
@@ -174,7 +178,7 @@ export const Card = ({
     <>
       <AnimatePresence>
         {open && (
-          <div className="fixed inset-0 h-screen z-50 overflow-auto">
+          <div className="fixed inset-0 h-screen z-[999] overflow-auto">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -190,7 +194,7 @@ export const Card = ({
               className="max-w-5xl mx-auto bg-neutral-900 h-fit  z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative"
             >
               <button
-                className="sticky top-4 h-8 w-8 right-0 ml-auto bg-white rounded-full flex items-center justify-center"
+                className="sticky top-4 h-8 w-8 right-0 ml-auto bg-white rounded-full flex items-center justify-center cursor-pointer"
                 onClick={handleClose}
               >
                 <X className="h-6 w-6 text-neutral-900" />
@@ -207,7 +211,15 @@ export const Card = ({
               >
                 {card.title}
               </motion.p>
-              <div className="py-10">CONTENT CARD WILL BE HERE</div>
+              <div className="lg:pb-10 pt-10 pb-48">
+                <ul className="space-y-4">
+                  {menu
+                    .filter((item) => item.group === card.category)
+                    .map((val, idx) => (
+                      <MenuItem {...val} key={idx} />
+                    ))}
+                </ul>
+              </div>
             </motion.div>
           </div>
         )}
@@ -221,9 +233,9 @@ export const Card = ({
         <div className="relative z-40 p-8">
           <motion.p
             layoutId={layout ? `category-${card.category}` : undefined}
-            className="text-white text-sm md:text-base font-medium font-sans text-left"
+            className="text-white text-sm md:text-base font-medium capitalize font-sans text-left"
           >
-            {card.category}
+            {CATEGORY_TRANSLATION[card.category]}
           </motion.p>
           <motion.p
             layoutId={layout ? `title-${card.title}` : undefined}

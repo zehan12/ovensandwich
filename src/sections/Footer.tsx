@@ -1,9 +1,8 @@
+import { FC } from "react";
 import { Separator } from "@/components/ui/separator";
 import routes from "@/lib/routes";
-import { INSTAGRAM_URL, ROUTE_MEDIAN } from "@/lib/utils";
-import Image from "next/image";
 import Link from "next/link";
-import { FC, Fragment } from "react";
+import scrollClick from "@/utils/scrollClick";
 
 const Footer: FC = () => {
   const currentYear = new Date().getFullYear();
@@ -23,6 +22,7 @@ const Footer: FC = () => {
                 } flex items-center justify-center text-center`}
               >
                 <Link
+                  onClick={scrollClick(route.selector)}
                   href={route.selector}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -33,15 +33,6 @@ const Footer: FC = () => {
               </li>
             );
           })}
-          <li className="hover:text-stone-300 border-l font-primary tracking-tighter hover:underline underline-offset-3 transition-all duration-500 hover:decoration-[#047857] px-4">
-            <Link
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Instagram
-            </Link>
-          </li>
         </ul>
       </div>
       <Separator />

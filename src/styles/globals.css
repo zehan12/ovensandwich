@@ -28,16 +28,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #151e15;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #000;
-  border-radius: 4px;
+  display: none;
 }
 
 body {

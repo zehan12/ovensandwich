@@ -8,7 +8,7 @@ const Menu = () => {
   ));
 
   return (
-    <section className="w-full h-full">
+    <section className="w-full h-full" id="menu">
       <h2 className="max-w-7xl pl-4 mx-auto text-4xl lg:text-6xl text-neutral-800 dark:text-neutral-200 font-secondary">
         Menü.
       </h2>
