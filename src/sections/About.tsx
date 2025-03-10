@@ -9,7 +9,10 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { INSTAGRAM_URL } from "@/lib/utils";
 import MotionContainer from "@/components/motion-provider/motion-container";
+import MotionQueue from "@/components/motion-provider/motion-queue";
+import { AnimationQueueAnimationProps } from "@/components/motion-provider/types";
 
+const desc = "Her gün sabah 9.00'dan akşam 21.00'a".split(/\s+/);
 const About = () => {
   const ref = useRef<HTMLHeadingElement | null>(null);
 
@@ -19,12 +22,21 @@ const About = () => {
       id="about"
     >
       <div>
-        <span
-          className="block mb-4 text-xs md:text-sm text-accent1 font-primary"
-          ref={ref}
-        >
-          Her gün sabah 9.00'dan akşam 21.00'a
-        </span>
+        <p className="flex flex-wrap mb-4 gap-1 text-xs md:text-sm text-accent font-primary">
+          <MotionQueue
+            elementType={"span"}
+            animations={
+              Array.from({ length: desc.length }).fill({
+                mode: ["filterBlurIn", "fadeRight"],
+                duration: 1,
+              }) as AnimationQueueAnimationProps[]
+            }
+            isDynamicallyQueued
+            children={desc}
+            delayLogic="chaotic"
+            duration={0.25}
+          />
+        </p>
         <MotionContainer
           elementType={"h3"}
           mode={["fadeIn", "filterBlurIn"]}
@@ -42,11 +54,12 @@ const About = () => {
           eşsiz bir deneyim sunuyor.
         </p>
         <Link href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
-          <Button variant="brand">
+          <Button variant="brand" aria-label="Instagram Redirection Button">
             <span>Instagram Sayfamız</span>
             <ArrowRight className="size-4" />
           </Button>
         </Link>
+        <div ref={ref} />
       </div>
       <ShuffleGrid ref={ref} />
     </section>

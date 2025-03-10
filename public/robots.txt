@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://www.ovensandwich.com/sitemap.xml
+Sitemap: https://ovensandwich.netlify.app/sitemap.xml

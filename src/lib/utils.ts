@@ -10,5 +10,12 @@ const CATEGORY_TRANSLATION = {
   desert: "tatlılarımız",
   beverage: "içeceklerimiz",
 } as Record<ItemGroupProps, string>;
+const ANALYTICS_ID = "G-1L6T9ZBZQG";
 
-export { MOBILE_BREAKPOINT, ROUTE_MEDIAN, INSTAGRAM_URL, CATEGORY_TRANSLATION };
+export {
+  MOBILE_BREAKPOINT,
+  ROUTE_MEDIAN,
+  INSTAGRAM_URL,
+  CATEGORY_TRANSLATION,
+  ANALYTICS_ID,
+};

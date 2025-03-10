@@ -6,14 +6,15 @@ import React, {
   useContext,
 } from "react";
 import { AnimatePresence, motion, useInView } from "motion/react";
-import Image, { ImageProps } from "next/image";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { MenuCardProps, CarouselProps } from "@/interfaces";
 import menu from "@/lib/menu";
 import MenuItem from "./menu-item";
-import Button from "./ui/button";
 import { CATEGORY_TRANSLATION } from "@/lib/utils";
+import { BlurImage } from "./blur-image";
+import { AnimationQueueAnimationProps } from "./motion-provider/types";
+import MotionQueue from "./motion-provider/motion-queue";
 
 export const CarouselContext = createContext<{
   onCardClose: (index: number) => void;
@@ -114,6 +115,7 @@ export const MenuCarousel = ({ items, initialScroll = 0 }: CarouselProps) => {
         </div>
         <div className="flex justify-end gap-2 mr-10">
           <button
+            aria-label="scroll left"
             className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50 cursor-pointer"
             onClick={scrollLeft}
             disabled={!canScrollLeft}
@@ -121,6 +123,7 @@ export const MenuCarousel = ({ items, initialScroll = 0 }: CarouselProps) => {
             <ArrowLeft className="h-6 w-6 text-gray-500" />
           </button>
           <button
+            aria-label="scroll right"
             className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50 cursor-pointer"
             onClick={scrollRight}
             disabled={!canScrollRight}
@@ -152,7 +155,6 @@ export const Card = ({
         handleClose();
       }
     }
-
     if (open) {
       document.body.style.overflow = "hidden";
     } else {
@@ -174,16 +176,32 @@ export const Card = ({
     onCardClose(index);
   };
 
+  const filteredMenu = menu.filter((item) => item.group === card.category);
+
+  const rightFadeInMode = ["filterBlurIn", "fadeRight"];
+  const leftFadeInMode = ["filterBlurIn", "fadeLeft"];
+
+  const animations = Array.from({ length: filteredMenu.length }).map(
+    (_, index) => ({
+      mode: index % 2 === 0 ? rightFadeInMode : leftFadeInMode,
+      duration: 0.5,
+      transition: "smooth",
+    })
+  ) as AnimationQueueAnimationProps[];
+
   return (
     <>
-      <AnimatePresence>
+      <AnimatePresence mode="popLayout">
         {open && (
           <div className="fixed inset-0 h-screen z-[999] overflow-auto">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="bg-black/80 backdrop-blur-lg h-full w-full fixed inset-0"
+              className="bg-black/80 backdrop-blur-lg h-full w-full fixed inset-0 bg-center bg-contain"
+              style={{
+                backgroundImage: `url(/assets/menu-images/menu-bg.webp)`,
+              }}
             />
             <motion.div
               initial={{ opacity: 0 }}
@@ -191,9 +209,10 @@ export const Card = ({
               exit={{ opacity: 0 }}
               ref={containerRef}
               layoutId={layout ? `card-${card.title}` : undefined}
-              className="max-w-5xl mx-auto bg-neutral-900 h-fit  z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative"
+              className="max-w-5xl mx-auto bg-neutral-900/75 h-fit z-[60] md:my-16 mt-8 p-4 md:p-10 rounded-3xl relative"
             >
               <button
+                aria-label="close"
                 className="sticky top-4 h-8 w-8 right-0 ml-auto bg-white rounded-full flex items-center justify-center cursor-pointer"
                 onClick={handleClose}
               >
@@ -201,24 +220,28 @@ export const Card = ({
               </button>
               <motion.p
                 layoutId={layout ? `category-${card.title}` : undefined}
-                className="text-base text-white font-secondary"
+                className="text-base text-white font-secondary tracking-tight capitalize"
               >
-                {card.category}
+                {CATEGORY_TRANSLATION[card.category]}
               </motion.p>
               <motion.p
                 layoutId={layout ? `title-${card.title}` : undefined}
-                className="text-2xl md:text-5xl font-semibold  mt-4 text-white"
+                className="text-2xl md:text-5xl font-semibold font-primary  mt-4 text-white"
               >
                 {card.title}
               </motion.p>
               <div className="lg:pb-10 pt-10 pb-48">
-                <ul className="space-y-4">
-                  {menu
-                    .filter((item) => item.group === card.category)
-                    .map((val, idx) => (
-                      <MenuItem {...val} key={idx} />
-                    ))}
-                </ul>
+                <MotionQueue
+                  duration={0.5}
+                  elementType="ul"
+                  className="space-y-4"
+                  animations={animations}
+                  isDynamicallyQueued
+                >
+                  {filteredMenu.map((val, idx) => (
+                    <MenuItem {...val} key={idx} />
+                  ))}
+                </MotionQueue>
               </div>
             </motion.div>
           </div>
@@ -226,6 +249,7 @@ export const Card = ({
       </AnimatePresence>
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
+        aria-label="open card modal"
         onClick={handleOpen}
         className="rounded-3xl cursor-pointer bg-neutral-900 h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10 group"
       >
@@ -233,13 +257,13 @@ export const Card = ({
         <div className="relative z-40 p-8">
           <motion.p
             layoutId={layout ? `category-${card.category}` : undefined}
-            className="text-white text-sm md:text-base font-medium capitalize font-sans text-left"
+            className="text-white text-sm md:text-base font-secondary capitalize text-left"
           >
             {CATEGORY_TRANSLATION[card.category]}
           </motion.p>
           <motion.p
             layoutId={layout ? `title-${card.title}` : undefined}
-            className="text-white text-xl md:text-3xl font-semibold max-w-xs text-left [text-wrap:balance] font-sans mt-2"
+            className="text-white text-xl md:text-3xl font-semibold max-w-xs text-left  mt-2"
           >
             {card.title}
           </motion.p>
@@ -252,32 +276,5 @@ export const Card = ({
         />
       </motion.button>
     </>
-  );
-};
-
-export const BlurImage = ({
-  height,
-  width,
-  src,
-  className,
-  alt,
-  ...rest
-}: ImageProps) => {
-  const [isLoading, setLoading] = useState(true);
-  return (
-    <Image
-      className={`transition duration-300 ${
-        isLoading ? "blur-sm" : "blur-0"
-      } ${className}`}
-      onLoad={() => setLoading(false)}
-      src={src}
-      width={width}
-      height={height}
-      loading="lazy"
-      decoding="async"
-      blurDataURL={typeof src === "string" ? src : undefined}
-      alt={alt ? alt : "Background of a beautiful view"}
-      {...rest}
-    />
   );
 };

@@ -24,12 +24,7 @@ export interface UIButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-export type ButtonVariants =
-  | "primary"
-  | "secondary"
-  | "brand"
-  | "accent1"
-  | "accent2";
+export type ButtonVariants = "primary" | "secondary" | "brand" | "accent";
 
 export interface CarouselProps {
   items: React.ReactNode[];

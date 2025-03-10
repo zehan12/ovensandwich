@@ -1,5 +1,4 @@
 import Divider from "@/components/divider";
-import { FloatIcons } from "@/components/float-icons";
 import MotionContainer from "@/components/motion-provider/motion-container";
 import MotionQueue from "@/components/motion-provider/motion-queue";
 import { AnimationQueueAnimationProps } from "@/components/motion-provider/types";
@@ -9,6 +8,7 @@ import floatIconsLib from "@/lib/floatIconsLib";
 import { MapPinCheckInside } from "lucide-react";
 import Link from "next/link";
 import { FC } from "react";
+import FloatIcons from "@/components/float-icons";
 
 export const Hero: FC = () => {
   const isMobile = useMobile();
@@ -21,14 +21,16 @@ export const Hero: FC = () => {
     `Çamdibinin en iyi büfesi Ovensandwich restorant, lezzetli tostlar,
             tatlılar, sandviçler ve içeceklerle donatılmış menümüz ile
             hizmetinizdeyiz!`.split(/\s+/);
+
   return (
-    <div className="w-full h-screen  rounded-md relative overflow-hidden">
+    <div className="w-full h-screen relative overflow-hidden">
       <MotionContainer
         mode={["fadeIn"]}
         transition="slowSmooth"
         elementType="div"
         duration={2}
-        className="absolute bg-[#2b75cffd] w-full h-full rounded-full lg:blur-[120px] blur-[80px] top-0 left-0 -z-10 bg-gradient-to-br from-black to-emerald-700"
+        delay={0.5}
+        className="absolute w-full h-full rounded-full lg:blur-[120px] blur-[80px] top-0 left-0 -z-10 bg-gradient-to-br from-black to-emerald-700"
       />
       <div className="h-full max-w-7xl mx-auto w-full items-center justify-center flex flex-col lg:flex-row">
         <div className="lg:w-1/2 lg:h-1/2 w-full h-1/2 lg:p-12 lg:items-start items-center justify-center flex flex-col lg:gap-6 gap-4 lg:mt-0 -mt-12 z-50">
@@ -46,9 +48,9 @@ export const Hero: FC = () => {
               }
               isDynamicallyQueued
               children={text}
-              delayLogic="chaotic"
+              delayLogic="linear"
               className="text-neutral-300 font-primary tracking-tight lg:text-base text-sm"
-              duration={0.5}
+              duration={0.25}
             />
           </p>
           <Link
@@ -57,7 +59,11 @@ export const Hero: FC = () => {
             rel="noopener noreferrer"
             className="z-50"
           >
-            <Button variant="secondary" className="w-full h-full">
+            <Button
+              variant="secondary"
+              className="w-full h-full"
+              aria-label="View on Google Maps Button"
+            >
               <span>Haritalarda Görüntüleyin</span>
               <MapPinCheckInside className="w-5 h-5 " />
             </Button>

@@ -2,16 +2,8 @@ import { FloatItem } from "@/interfaces";
 
 export default [
   {
-    alt: "Ovensandwich Hamburger Icon",
-    src: "/assets/icons/hamburger-icon.png",
-    height: 64,
-    width: 64,
-    top: 20,
-    left: 16,
-  },
-  {
     alt: "Ovensandwich Baklava Icon",
-    src: "/assets/icons/baklava-icon.png",
+    src: "/assets/icons/baklava-icon.webp",
     height: 64,
     width: 64,
     top: 66,
@@ -19,7 +11,7 @@ export default [
   },
   {
     alt: "Ovensandwich Cookie Icon",
-    src: "/assets/icons/cookie-icon.png",
+    src: "/assets/icons/cookie-icon.webp",
     height: 72,
     width: 72,
     top: 80,
@@ -27,7 +19,7 @@ export default [
   },
   {
     alt: "Ovensandwich Bread Icon",
-    src: "/assets/icons/bread-icon.png",
+    src: "/assets/icons/bread-icon.webp",
     height: 72,
     width: 72,
     top: 80,
@@ -35,15 +27,15 @@ export default [
   },
   {
     alt: "Ovensandwich Tea Icon",
-    src: "/assets/icons/tea-icon.png",
+    src: "/assets/icons/tea-icon.webp",
     height: 64,
     width: 64,
-    top: 72,
+    top: 24,
     left: 24,
   },
   {
     alt: "Ovensandwich Hamburger Icon",
-    src: "/assets/icons/hamburger-icon.png",
+    src: "/assets/icons/hamburger-icon.webp",
     height: 32,
     width: 32,
     top: 24,
@@ -51,7 +43,7 @@ export default [
   },
   {
     alt: "Ovensandwich Salad Icon",
-    src: "/assets/icons/salad-icon.png",
+    src: "/assets/icons/salad-icon.webp",
     height: 64,
     width: 64,
     top: 72,
@@ -59,7 +51,7 @@ export default [
   },
   {
     alt: "Ovensandwich wrap Icon",
-    src: "/assets/icons/wrap-icon.png",
+    src: "/assets/icons/wrap-icon.webp",
     height: 80,
     width: 80,
     top: 24,

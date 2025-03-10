@@ -147,7 +147,11 @@ export type ImageMotionFnTypes = "hover" | "click";
 
 export type DelayLogic = "linear" | "chaotic";
 
-export type AnimationKeys = "fadeIn" | "fadeRight" | "filterBlurIn";
+export type AnimationKeys =
+  | "fadeIn"
+  | "fadeRight"
+  | "fadeLeft"
+  | "filterBlurIn";
 
 export type TransitionKeys =
   | "none"

@@ -23,8 +23,8 @@ export default function Testimonial({
 
       <div className="flex items-start mt-5 justify-between">
         <div>
-          <h2 className="text-[1.2rem] font-[600]">{name}</h2>
-          <p className="text-[1rem] text-[#727272]">{job}</p>
+          <h2 className="text-[1.2rem] ">{name}</h2>
+          <p className="text-[1rem] text-stone-400">{job}</p>
         </div>
         <div className="flex items-center gap-1">
           {Array.from({ length: 5 }).map((_, idx) => (

@@ -18,7 +18,13 @@ const animations: AnimationLibraryProps = {
       x: 0,
     },
   },
-
+  fadeLeft: {
+    initial: { opacity: 0, x: -30 },
+    animate: {
+      opacity: 1,
+      x: 0,
+    },
+  },
   filterBlurIn: {
     initial: { filter: "blur(10px)" },
     animate: {

@@ -1,8 +1,10 @@
 import { FloatItems } from "@/interfaces";
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useState } from "react";
 
 const FloatIcons: FC<FloatItems> = ({ data = [], wrapperStyle, isMobile }) => {
+  const [isLoading, setLoading] = useState<boolean>(true);
+
   if (!data.length) {
     console.warn("No data provided on FloatIcons");
     return null;
@@ -17,13 +19,16 @@ const FloatIcons: FC<FloatItems> = ({ data = [], wrapperStyle, isMobile }) => {
 
         return (
           <Image
-            priority
+            loading="lazy"
+            decoding="async"
             key={idx}
             src={item.src}
+            onLoad={() => setLoading(false)}
             alt={item.alt}
             height={height}
             width={width}
-            className="animate-float absolute"
+            blurDataURL={typeof item.src === "string" ? item.src : undefined}
+            className={`animate-float absolute ${isLoading && "blur-sm"} `}
             style={{
               top: `${item.top}%`,
               left: `${item.left}%`,
@@ -37,4 +42,4 @@ const FloatIcons: FC<FloatItems> = ({ data = [], wrapperStyle, isMobile }) => {
   );
 };
 
-export { FloatIcons };
+export default FloatIcons;

@@ -1,5 +1,4 @@
 import { Logo } from "@/components/logo";
-import { useScroll } from "@/hooks/use-scroll";
 import routes from "@/lib/routes";
 import { ROUTE_MEDIAN } from "@/lib/utils";
 import Link from "next/link";
@@ -8,9 +7,6 @@ import scrollClick from "@/utils/scrollClick";
 
 const Header: FC = () => {
   const [active, setActive] = useState<boolean>(false);
-  const sectionID = routes.map((val) => val.selector);
-
-  const activeSection = useScroll(sectionID, 80);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,8 +59,6 @@ const Header: FC = () => {
       <nav className="font-primary">
         <ul className="flex flex-row lg:gap-8 lg:text-base gap-3 text-sm items-center justify-between">
           {routes.map((route, idx) => {
-            const isActive = activeSection === route.selector;
-
             if (idx + 1 === ROUTE_MEDIAN) {
               return (
                 <Fragment key={route.name}>
@@ -80,7 +74,7 @@ const Header: FC = () => {
                   </li>
                   <li>
                     <Link href="/">
-                      <Logo isAnimated />
+                      <Logo />
                     </Link>
                   </li>
                 </Fragment>
