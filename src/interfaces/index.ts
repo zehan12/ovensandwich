@@ -1,6 +1,7 @@
 export interface NavItem {
   selector: string;
   name: string;
+  nameKey?: string;
 }
 
 export interface FloatItem {

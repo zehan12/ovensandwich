@@ -4,9 +4,11 @@ import { ROUTE_MEDIAN } from "@/lib/utils";
 import Link from "next/link";
 import { FC, Fragment, useEffect, useState } from "react";
 import scrollClick from "@/utils/scrollClick";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Header: FC = () => {
   const [active, setActive] = useState<boolean>(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,8 +58,8 @@ const Header: FC = () => {
         ${active ? "bg-black/80  text-white" : "bg-transparent text-white"}
       `}
     >
-      <nav className="font-primary">
-        <ul className="flex flex-row lg:gap-8 lg:text-base gap-3 text-sm items-center justify-between">
+      <nav className="font-primary flex items-center w-full justify-between px-6">
+        <ul className="flex flex-row lg:gap-8 lg:text-base gap-3 text-sm items-center justify-between w-full">
           {routes.map((route, idx) => {
             if (idx + 1 === ROUTE_MEDIAN) {
               return (
@@ -69,7 +71,7 @@ const Header: FC = () => {
                       href={route.selector}
                       onClick={scrollClick(route.selector)}
                     >
-                      {route.name}
+                      {t((route as any).nameKey)}
                     </Link>
                   </li>
                   <li>
@@ -89,12 +91,23 @@ const Header: FC = () => {
                   href={route.selector}
                   onClick={scrollClick(route.selector)}
                 >
-                  {route.name}
+                  {t((route as any).nameKey)}
                 </Link>
               </li>
             );
           })}
         </ul>
+        <select
+          value={language}
+          onChange={(e) => setLanguage(e.target.value as any)}
+          className="ml-4 uppercase font-bold text-sm tracking-wider bg-transparent hover:text-stone-300 transition-colors cursor-pointer outline-none"
+        >
+          <option value="tr" className="text-black">TR</option>
+          <option value="en" className="text-black">EN</option>
+          <option value="de" className="text-black">DE</option>
+          <option value="es" className="text-black">ES</option>
+          <option value="fr" className="text-black">FR</option>
+        </select>
       </nav>
     </header>
   );

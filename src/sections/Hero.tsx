@@ -9,16 +9,17 @@ import { MapPinCheckInside } from "lucide-react";
 import Link from "next/link";
 import { FC } from "react";
 import FloatIcons from "@/components/float-icons";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const Hero: FC = () => {
   const isMobile = useMobile();
+  const { t } = useLanguage();
   const ADDRESS =
     "Tuna neighborhood, 5522 Street No 32, Bornova, Izmir, Izmir, Turkey 35090";
   const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
     ADDRESS
   )}`;
-  const text =
-    `Ovensandwich restaurant, the best deli in Çamdibi, is at your service with a menu full of delicious toasts, desserts, sandwiches, and beverages!`.split(/\s+/);
+  const text = t("heroText").split(/\s+/);
 
   return (
     <div className="w-full h-screen relative overflow-hidden">
@@ -62,7 +63,7 @@ export const Hero: FC = () => {
               className="w-full h-full"
               aria-label="View on Google Maps Button"
             >
-              <span>View on Maps</span>
+              <span>{t("viewOnMaps")}</span>
               <MapPinCheckInside className="w-5 h-5" />
             </Button>
           </Link>

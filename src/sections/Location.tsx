@@ -3,8 +3,10 @@ import { ArrowRight } from "lucide-react";
 import { useInView } from "motion/react";
 import Link from "next/link";
 import { FC, useRef } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Location: FC = () => {
+  const { t } = useLanguage();
   const ref = useRef<HTMLElement | null>(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px 200px 0px" });
 
@@ -24,11 +26,10 @@ const Location: FC = () => {
       id="location"
     >
       <h2 className="text-5xl md:text-6xl font-secondary font-bold mb-4">
-        Lokasyonumuz.
+        {t("locationTitle")}
       </h2>
       <p className="md:text-lg text-sm mb-6 max-w-lg font-primary tracking-tighter text-stone-400 text-center">
-        {ADDRESS} adresinde bulunuyoruz. Uğrayın ve bizi görün veya aşağıdan yol
-        tarifi alın!
+        {ADDRESS} {t("locationDesc")}
       </p>
 
       <div className="w-full max-w-4xl h-64 md:h-96 rounded-lg overflow-hidden shadow-lg my-6 items-center justify-center flex">
@@ -54,7 +55,7 @@ const Location: FC = () => {
           aria-label="View Directions on Google Maps Button"
         >
           <span className="font-primary tracking-tight">
-            Tek tuşta yol tarifi alın
+            {t("getDirections")}
           </span>
           <ArrowRight className="w-5 h-5" />
         </Button>

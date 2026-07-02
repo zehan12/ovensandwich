@@ -11,9 +11,11 @@ import { INSTAGRAM_URL } from "@/lib/utils";
 import MotionContainer from "@/components/motion-provider/motion-container";
 import MotionQueue from "@/components/motion-provider/motion-queue";
 import { AnimationQueueAnimationProps } from "@/components/motion-provider/types";
+import { useLanguage } from "@/context/LanguageContext";
 
-const desc = "Her gün sabah 9.00'dan akşam 21.00'a".split(/\s+/);
 const About = () => {
+  const { t } = useLanguage();
+  const desc = t("aboutDesc").split(/\s+/);
   const ref = useRef<HTMLHeadingElement | null>(null);
 
   return (
@@ -44,18 +46,14 @@ const About = () => {
           delay={0.5}
           duration={1}
           transition="smooth"
-          children="Sizler için buradayız."
+          children={t("aboutTitle")}
         />
         <p className="text-sm md:text-base text-stone-400 font-primary my-4 md:my-6 tracking-tighter">
-          Yenilikçi tatların buluştuğu noktamıza sizleri bekliyor, 100%
-          memnuniyet garantiliyoruz. burada her lokma geleceğin lezzetlerini
-          yaşatıyor. Taptaze sandviçler, sıcacık tostlar, unutulmaz tatlılar ve
-          ferahlatıcı içeceklerle donatılmış menümüz, damaklarınızı şımartacak
-          eşsiz bir deneyim sunuyor.
+          {t("aboutContent")}
         </p>
         <Link href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
           <Button variant="brand" aria-label="Instagram Redirection Button">
-            <span>Instagram Sayfamız</span>
+            <span>{t("instagramPage")}</span>
             <ArrowRight className="size-4" />
           </Button>
         </Link>

@@ -3,8 +3,10 @@ import { Separator } from "@/components/ui/separator";
 import routes from "@/lib/routes";
 import Link from "next/link";
 import scrollClick from "@/utils/scrollClick";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Footer: FC = () => {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
   return (
     <footer className="relative py-14 px-4 sm:px-6 lg:px-8 w-full  mx-auto bg-gradient-to-b from-[#0a0a0a] to-emerald-700">
@@ -28,7 +30,7 @@ const Footer: FC = () => {
                   rel="noopener noreferrer"
                   className="hover:text-stone-300 font-primary tracking-tighter hover:underline underline-offset-3 transition-all duration-500 hover:decoration-[#047857] px-4"
                 >
-                  {route.name}
+                  {t((route as any).nameKey)}
                 </Link>
               </li>
             );
@@ -39,13 +41,13 @@ const Footer: FC = () => {
       <div className=" px-4 sm:px-6 lg:px-8">
         <div className="flex justify-center">
           <p className="text-xs leading-5 text-stone-300 text-center font-primary">
-            &copy; {currentYear} Tüm hakları saklıdır. |{" "}
+            &copy; {currentYear} {t("allRightsReserved")} |{" "}
             <Link
               href="https://burakdev.com/motion-provider/"
               target="_blank"
               className="hover:text-white hover:underline underline-offset-3 transition-all duration-500 hover:decoration-[#047857]"
             >
-              Powered By Motion Provider
+              {t("poweredBy")}
             </Link>{" "}
             -{" "}
             <Link
@@ -53,7 +55,7 @@ const Footer: FC = () => {
               target="_blank"
               className="hover:underline hover:text-white underline-offset-3 transition-all duration-500 hover:decoration-[#047857]"
             >
-              Burak Bilen.
+              {t("author")}
             </Link>
           </p>
         </div>
