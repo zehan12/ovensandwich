@@ -13,14 +13,12 @@ import FloatIcons from "@/components/float-icons";
 export const Hero: FC = () => {
   const isMobile = useMobile();
   const ADDRESS =
-    "Tuna mah. 5522 sokak No 32 Bornova İzmir, İzmir, Turkey 35090";
+    "Tuna neighborhood, 5522 Street No 32, Bornova, Izmir, Izmir, Turkey 35090";
   const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
     ADDRESS
   )}`;
   const text =
-    `Çamdibinin en iyi büfesi Ovensandwich restorant, lezzetli tostlar,
-            tatlılar, sandviçler ve içeceklerle donatılmış menümüz ile
-            hizmetinizdeyiz!`.split(/\s+/);
+    `Ovensandwich restaurant, the best deli in Çamdibi, is at your service with a menu full of delicious toasts, desserts, sandwiches, and beverages!`.split(/\s+/);
 
   return (
     <div className="w-full h-screen relative overflow-hidden">
@@ -30,7 +28,7 @@ export const Hero: FC = () => {
         elementType="div"
         duration={2}
         delay={0.5}
-        className="absolute w-full h-full rounded-full lg:blur-[120px] blur-[80px] top-0 left-0 -z-10 bg-gradient-to-br from-black to-emerald-700"
+        className="absolute w-full h-full rounded-full lg:blur-[120px] blur-[80px] top-0 left-0 -z-10 bg-gradient-to-br from-red-900 to-blue-800"
       />
       <div className="h-full max-w-7xl mx-auto w-full items-center justify-center flex flex-col lg:flex-row">
         <div className="lg:w-1/2 lg:h-1/2 w-full h-1/2 lg:p-12 lg:items-start items-center justify-center flex flex-col lg:gap-6 gap-4 lg:mt-0 -mt-12 z-50">
@@ -64,8 +62,8 @@ export const Hero: FC = () => {
               className="w-full h-full"
               aria-label="View on Google Maps Button"
             >
-              <span>Haritalarda Görüntüleyin</span>
-              <MapPinCheckInside className="w-5 h-5 " />
+              <span>View on Maps</span>
+              <MapPinCheckInside className="w-5 h-5" />
             </Button>
           </Link>
           {isMobile && (

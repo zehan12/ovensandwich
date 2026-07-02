@@ -2,13 +2,10 @@ import { FC } from "react";
 import dynamic from "next/dynamic";
 import testimonialLib from "@/lib/testimonialLib";
 import getTextSize from "@/utils/getTextSize";
-import Testimonial from "@/components/testimonial";
 import { AnimationQueueAnimationProps } from "@/components/motion-provider/types";
 import MotionQueue from "@/components/motion-provider/motion-queue";
-
-const Marquee = dynamic(() => import("@/components/marquee"), {
-  ssr: false,
-});
+import Marquee from "@/components/Marquee";
+import Testimonial from "@/components/Testimonial";
 
 const title = "Müşterilerimizin Yorumları.".split(/\s+/);
 
